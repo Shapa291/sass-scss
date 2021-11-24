@@ -1,0 +1,78 @@
+//Comments
+
+@import "variables";
+@import "mixins";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+@include link(silver, red, blue, green);
+
+.header {
+    @include link(silver, red, blue, green) {
+        background: black;
+
+        &:visited {
+            color: green;
+        }
+    }
+}
+
+#grid {
+    float: left;
+    width: 100%;
+
+    > div{
+        @include grid(4, 2%);
+    }
+
+}
+
+@for $i from 24 to 29 {
+    .#{$someVar}_#{i}{
+        width: 50px + $i;
+        height: 50px + $i;
+    }
+}
+
+.block:not(.first){
+    @include padd(20px 40px);
+    background: $bgcolor;
+    height: 200px;
+    width: $blockWidth;
+    margin-bottom: 20px;
+    border: $border;
+}
+
+#central_block{
+    padding: 30px;
+    ul {
+        list-style: none;
+        display: inline;
+    }
+    li {
+        float: left;
+        width: (100% / 3);
+
+        a{
+            @include font(orange, bold);
+
+            &:hover{
+                color: red;
+            }
+        }   
+    }
+    a {
+        @include font($fontW: light);
+        }
+}
+
+.first {
+    border: $border;
+    background: $bgcolor;
+    width: $blockWidth;
+    height: 100px;
+    margin-bottom: 20px;
+}
